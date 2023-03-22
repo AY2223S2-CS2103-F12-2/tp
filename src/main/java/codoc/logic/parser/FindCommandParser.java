@@ -94,17 +94,21 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     private Predicate<Person> addSkillPredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
         String skillArgs = argMultimap.getValue(PREFIX_SKILL).orElseGet(() -> "").trim();
-        String[] skillKeywords = skillArgs.split("\\s+");
-        Predicate<Person> skillPredicate = new SkillContainsKeywordsPredicate(Arrays.asList(skillKeywords));
-        combinedPredicate = combinedPredicate.and(skillPredicate);
+        if (!skillArgs.isEmpty()) {
+            String[] skillKeywords = skillArgs.split("\\s+");
+            Predicate<Person> skillPredicate = new SkillContainsKeywordsPredicate(Arrays.asList(skillKeywords));
+            combinedPredicate = combinedPredicate.and(skillPredicate);
+        }
         return combinedPredicate;
     }
 
     private Predicate<Person> addModulePredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
         String moduleArgs = argMultimap.getValue(PREFIX_MOD).orElseGet(() -> "").trim();
-        String[] moduleKeywords = moduleArgs.split("\\s+");
-        Predicate<Person> modulePredicate = new ModuleContainsKeywordsPredicate(Arrays.asList(moduleKeywords));
-        combinedPredicate = combinedPredicate.and(modulePredicate);
+        if (!moduleArgs.isEmpty()) {
+            String[] moduleKeywords = moduleArgs.split("\\s+");
+            Predicate<Person> modulePredicate = new ModuleContainsKeywordsPredicate(Arrays.asList(moduleKeywords));
+            combinedPredicate = combinedPredicate.and(modulePredicate);
+        }
         return combinedPredicate;
     }
 
