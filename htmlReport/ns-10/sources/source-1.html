@@ -1,0 +1,215 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SampleDataUtil</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.model.util</a>
+</div>
+
+<h1>Coverage Summary for Class: SampleDataUtil (codoc.model.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SampleDataUtil</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (2/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (6/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.model.util;
+&nbsp;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.Set;
+&nbsp;import java.util.stream.Collectors;
+&nbsp;
+&nbsp;import codoc.model.Codoc;
+&nbsp;import codoc.model.ReadOnlyCodoc;
+&nbsp;import codoc.model.module.Module;
+&nbsp;import codoc.model.person.Course;
+&nbsp;import codoc.model.person.Email;
+&nbsp;import codoc.model.person.Github;
+&nbsp;import codoc.model.person.Linkedin;
+&nbsp;import codoc.model.person.Name;
+&nbsp;import codoc.model.person.Person;
+&nbsp;import codoc.model.person.Year;
+&nbsp;import codoc.model.skill.Skill;
+&nbsp;
+&nbsp;/**
+&nbsp; * Contains utility methods for populating {@code Codoc} with sample data.
+&nbsp; */
+<b class="nc">&nbsp;public class SampleDataUtil {</b>
+&nbsp;    public static Person[] getSamplePersons() {
+<b class="nc">&nbsp;        return new Person[] {</b>
+&nbsp;            new Person(
+&nbsp;                    new Name(&quot;Alex Yeoh&quot;),
+&nbsp;                    new Course(&quot;CS&quot;),
+&nbsp;                    new Year(&quot;1&quot;),
+&nbsp;                    new Github(&quot;alexyeoh&quot;),
+&nbsp;                    new Email(&quot;alexyeoh@example.com&quot;),
+&nbsp;                    new Linkedin(&quot;linkedin.com/in/alexyeoh&quot;),
+<b class="nc">&nbsp;                    getSkillSet(&quot;python&quot;),</b>
+<b class="nc">&nbsp;                    getModuleSet(&quot;AY2223S2 CS1101&quot;)</b>
+&nbsp;            ),
+&nbsp;            new Person(
+&nbsp;                    new Name(&quot;Bernice Yu&quot;),
+&nbsp;                    new Course(&quot;BZA&quot;),
+&nbsp;                    new Year(&quot;2&quot;),
+&nbsp;                    new Github(&quot;bernice-yu&quot;),
+&nbsp;                    new Email(&quot;berniceyu@example.com&quot;),
+&nbsp;                    new Linkedin(&quot;linkedin.com/in/berNICE&quot;),
+<b class="nc">&nbsp;                    getSkillSet(&quot;java&quot;, &quot;python&quot;),</b>
+<b class="nc">&nbsp;                    getModuleSet(&quot;AY2223S2 CS1101&quot;, &quot;AY2223S2 CS2030S&quot;)</b>
+&nbsp;            ),
+&nbsp;            new Person(
+&nbsp;                    new Name(&quot;Charlotte Oliveiro&quot;),
+&nbsp;                    new Course(&quot;CS&quot;),
+&nbsp;                    new Year(&quot;3&quot;),
+&nbsp;                    new Github(&quot;ch4rl0tt3&quot;),
+&nbsp;                    new Email(&quot;charlotte@example.com&quot;),
+&nbsp;                    new Linkedin(&quot;linkedin.com/in/charlotte-oliveiro&quot;),
+<b class="nc">&nbsp;                    getSkillSet(&quot;sql&quot;),</b>
+<b class="nc">&nbsp;                    getModuleSet(&quot;AY2223S2 CS1101&quot;, &quot;AY2223S2 CS2030S&quot;, &quot;AY2223S2 CS2040S&quot;)</b>
+&nbsp;            ),
+&nbsp;            new Person(
+&nbsp;                    new Name(&quot;David Li&quot;),
+&nbsp;                    new Course(&quot;INFOSYS&quot;),
+&nbsp;                    new Year(&quot;4&quot;),
+&nbsp;                    new Github(&quot;David-Li&quot;),
+&nbsp;                    new Email(&quot;lidavid@example.com&quot;),
+&nbsp;                    new Linkedin(&quot;linkedin.com/in/d4v1d-l1&quot;),
+<b class="nc">&nbsp;                    getSkillSet(&quot;c&quot;),</b>
+<b class="nc">&nbsp;                    getModuleSet(&quot;AY2223S2 CS1101&quot;, &quot;AY2223S2 CS2030S&quot;)</b>
+&nbsp;            ),
+&nbsp;            new Person(
+&nbsp;                    new Name(&quot;Irfan Ibrahim&quot;),
+&nbsp;                    new Course(&quot;INFOSEC&quot;),
+&nbsp;                    new Year(&quot;2&quot;),
+&nbsp;                    new Github(&quot;iRf4n&quot;),
+&nbsp;                    new Email(&quot;irfan@example.com&quot;),
+&nbsp;                    new Linkedin(&quot;linkedin.com/in/1rf4n&quot;),
+<b class="nc">&nbsp;                    getSkillSet(&quot;javascript&quot;),</b>
+<b class="nc">&nbsp;                    getModuleSet(&quot;AY2223S2 CS1101&quot;, &quot;AY2223S2 CS2030S&quot;)</b>
+&nbsp;            ),
+&nbsp;            new Person(
+&nbsp;                    new Name(&quot;Roy Balakrishnan&quot;),
+&nbsp;                    new Course(&quot;CEG&quot;),
+&nbsp;                    new Year(&quot;2&quot;),
+&nbsp;                    new Github(&quot;b4l4Kr15H-n4n&quot;),
+&nbsp;                    new Email(&quot;royb@example.com&quot;),
+&nbsp;                    new Linkedin(&quot;linkedin.com/in/Roy&quot;),
+<b class="nc">&nbsp;                    getSkillSet(&quot;java&quot;),</b>
+<b class="nc">&nbsp;                    getModuleSet(&quot;AY2223S2 CS1101&quot;, &quot;AY2223S2 CS2030S&quot;)</b>
+&nbsp;            )
+&nbsp;        };
+&nbsp;    }
+&nbsp;
+&nbsp;    public static ReadOnlyCodoc getSampleCodoc() {
+<b class="nc">&nbsp;        Codoc sampleAb = new Codoc();</b>
+<b class="nc">&nbsp;        for (Person samplePerson : getSamplePersons()) {</b>
+<b class="nc">&nbsp;            sampleAb.addPerson(samplePerson);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return sampleAb;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns a skill set containing the list of strings given.
+&nbsp;     */
+&nbsp;    public static Set&lt;Skill&gt; getSkillSet(String... strings) {
+<b class="fc">&nbsp;        return Arrays.stream(strings)</b>
+<b class="fc">&nbsp;                .map(Skill::new)</b>
+<b class="fc">&nbsp;                .collect(Collectors.toSet());</b>
+&nbsp;    }
+&nbsp;    /**
+&nbsp;     * Returns a module list containing the list of strings given.
+&nbsp;     */
+&nbsp;    public static Set&lt;Module&gt; getModuleSet(String... strings) {
+<b class="fc">&nbsp;        return Arrays.stream(strings)</b>
+<b class="fc">&nbsp;                .map(Module::new)</b>
+<b class="fc">&nbsp;                .collect(Collectors.toSet());</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-17 12:10</div>
+</div>
+</body>
+</html>

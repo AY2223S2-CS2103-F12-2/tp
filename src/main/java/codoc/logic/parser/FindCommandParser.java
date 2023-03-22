@@ -104,11 +104,9 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     private Predicate<Person> addModulePredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
         String moduleArgs = argMultimap.getValue(PREFIX_MOD).orElseGet(() -> "").trim();
-        if (!moduleArgs.isEmpty()) {
-            String[] moduleKeywords = moduleArgs.split("\\s+");
-            Predicate<Person> modulePredicate = new ModuleContainsKeywordsPredicate(Arrays.asList(moduleKeywords));
-            combinedPredicate = combinedPredicate.and(modulePredicate);
-        }
+        String[] moduleKeywords = moduleArgs.split("\\s+");
+        Predicate<Person> modulePredicate = new ModuleContainsKeywordsPredicate(Arrays.asList(moduleKeywords));
+        combinedPredicate = combinedPredicate.and(modulePredicate);
         return combinedPredicate;
     }
 

@@ -1,5 +1,8 @@
 package codoc.model.module;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -17,22 +20,41 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
+    private boolean noKeywords() {
+        return keywords.get(0).isEmpty();
+    }
+
+    private boolean personHaveNoModules(Person person) {
+        return person.getModules().isEmpty();
+    }
+
+    private boolean isAcademicYear(String word) {
+        return word.matches(ACAD_YEAR_VALIDATION_REGEX);
+    }
+
+    private String constructWhatUserIsSearchingFor(String academicYear, String module) {
+        if (academicYear.equals(module)) {
+            return academicYear;
+        }
+        return academicYear.concat(" ").concat(module).trim().toUpperCase();
+    }
+
     @Override
     public boolean test(Person person) {
-        if (person.getModules().isEmpty()) {
-            return false;
+
+        if (noKeywords()) {
+            return personHaveNoModules(person);
         }
 
         String academicYear = "";
+
         for (String word : keywords) {
-            if (word.matches(ACAD_YEAR_VALIDATION_REGEX)) {
+            if (isAcademicYear(word)) {
                 academicYear = word;
-                continue;
             }
-            if (academicYear.isEmpty()) {
-                continue;
-            }
-            if (!person.getModules().contains(new Module(academicYear.concat(" ").concat(word)))) {
+
+            String whatUserIsSearchingFor = constructWhatUserIsSearchingFor(academicYear, word);
+            if (person.getModules().stream().noneMatch(module -> module.moduleName.contains(whatUserIsSearchingFor))) {
                 return false;
             }
         }

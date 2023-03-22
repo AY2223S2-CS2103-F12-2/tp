@@ -55,9 +55,9 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         linkedin = new Linkedin(DEFAULT_LINKEDIN);
         skills = new HashSet<>();
-        skills.add(DEFAULT_SKILL);
+        //skills.add(DEFAULT_SKILL);
         mods = new HashSet<>();
-        mods.add(DEFAULT_MODULE);
+        //mods.add(DEFAULT_MODULE);
     }
 
     /**
