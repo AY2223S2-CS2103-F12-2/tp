@@ -1,8 +1,5 @@
 package codoc.model.module;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -39,6 +36,10 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Person> {
         return academicYear.concat(" ").concat(module).trim().toUpperCase();
     }
 
+    private boolean doesNotContain(String whatUserIsSearchingFor, Person person) {
+        return person.getModules().stream().noneMatch(module -> module.moduleName.contains(whatUserIsSearchingFor));
+    }
+
     @Override
     public boolean test(Person person) {
 
@@ -54,7 +55,7 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Person> {
             }
 
             String whatUserIsSearchingFor = constructWhatUserIsSearchingFor(academicYear, word);
-            if (person.getModules().stream().noneMatch(module -> module.moduleName.contains(whatUserIsSearchingFor))) {
+            if (doesNotContain(whatUserIsSearchingFor, person)) {
                 return false;
             }
         }
