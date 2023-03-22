@@ -15,12 +15,32 @@ public class SkillContainsKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
+    private boolean noKeywords() {
+        return keywords.get(0).isEmpty();
+    }
+
+    private boolean personHaveNoSkills(Person person) {
+        return person.getSkills().isEmpty();
+    }
+
+    private boolean doesNotContain(String skillUserIsSearchingFor, Person person) {
+        return person.getSkills().stream().noneMatch(
+                skill -> skill.skillName.equalsIgnoreCase(skillUserIsSearchingFor));
+    }
+
     @Override
     public boolean test(Person person) {
-        if (person.getSkills().isEmpty()) {
-            return false;
+
+        if (noKeywords()) {
+            return personHaveNoSkills(person);
         }
-        return keywords.stream().anyMatch(keyword -> person.getSkills().contains(new Skill(keyword)));
+
+        for (String word : keywords) {
+            if (doesNotContain(word, person)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

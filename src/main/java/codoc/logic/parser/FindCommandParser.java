@@ -94,11 +94,9 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     private Predicate<Person> addSkillPredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
         String skillArgs = argMultimap.getValue(PREFIX_SKILL).orElseGet(() -> "").trim();
-        if (!skillArgs.isEmpty()) {
-            String[] skillKeywords = skillArgs.split("\\s+");
-            Predicate<Person> skillPredicate = new SkillContainsKeywordsPredicate(Arrays.asList(skillKeywords));
-            combinedPredicate = combinedPredicate.and(skillPredicate);
-        }
+        String[] skillKeywords = skillArgs.split("\\s+");
+        Predicate<Person> skillPredicate = new SkillContainsKeywordsPredicate(Arrays.asList(skillKeywords));
+        combinedPredicate = combinedPredicate.and(skillPredicate);
         return combinedPredicate;
     }
 
