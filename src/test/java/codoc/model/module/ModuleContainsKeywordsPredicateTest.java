@@ -13,12 +13,8 @@ public class ModuleContainsKeywordsPredicateTest {
 
     @Test
     public void test_keywords_returnsTrue() {
-        // Empty input
-        ModuleContainsKeywordsPredicate predicate = new ModuleContainsKeywordsPredicate(List.of(""));
-        assertTrue(predicate.test(new PersonBuilder().withModules().build()));
-
         // Single academic year that match
-        predicate = new ModuleContainsKeywordsPredicate(List.of("AY2020S1"));
+        ModuleContainsKeywordsPredicate predicate = new ModuleContainsKeywordsPredicate(List.of("AY2020S1"));
         assertTrue(predicate.test(new PersonBuilder().withModules("AY2019S2 CS2103T", "AY2020S1 CS2101").build()));
 
         // Multiple academic year, where all match
@@ -45,12 +41,8 @@ public class ModuleContainsKeywordsPredicateTest {
 
     @Test
     public void test_keywords_returnsFalse() {
-        // Empty input
-        ModuleContainsKeywordsPredicate predicate = new ModuleContainsKeywordsPredicate(List.of(""));
-        assertFalse(predicate.test(new PersonBuilder().withModules("AY2019S2 CS2103T", "AY2020S1 CS2103T").build()));
-
         // Single academic year with no match
-        predicate = new ModuleContainsKeywordsPredicate(List.of("AY2222S2"));
+        ModuleContainsKeywordsPredicate predicate = new ModuleContainsKeywordsPredicate(List.of("AY2222S2"));
         assertFalse(predicate.test(new PersonBuilder().withModules("AY2019S2 CS2103T", "AY2020S1 CS2101").build()));
 
         // Multiple academic year, where at least one has no match

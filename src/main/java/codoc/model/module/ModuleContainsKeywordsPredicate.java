@@ -17,14 +17,6 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
-    private boolean noKeywords() {
-        return keywords.get(0).isEmpty();
-    }
-
-    private boolean personHaveNoModules(Person person) {
-        return person.getModules().isEmpty();
-    }
-
     private boolean isAcademicYear(String word) {
         return word.matches(ACAD_YEAR_VALIDATION_REGEX);
     }
@@ -42,10 +34,6 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-
-        if (noKeywords()) {
-            return personHaveNoModules(person);
-        }
 
         String academicYear = "";
 
