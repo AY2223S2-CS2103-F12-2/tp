@@ -43,6 +43,12 @@ public class PersonListPanel extends UiPart<Region> {
      * @param index
      */
     public void showIndex(int index) {
+        if (personListView.getFocusModel().isFocused(index)) {
+            System.out.println("True");
+        } else {
+            System.out.println("False");
+            System.out.println(personListView.getFocusModel().getFocusedIndex());
+        }
         personListView.scrollTo(index);
         personListView.getSelectionModel().select(index);
     }
