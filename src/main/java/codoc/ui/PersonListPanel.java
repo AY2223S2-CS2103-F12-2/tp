@@ -9,6 +9,8 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.skin.ListViewSkin;
+import javafx.scene.control.skin.VirtualFlow;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 
@@ -46,8 +48,10 @@ public class PersonListPanel extends UiPart<Region> {
      * @param index
      */
     public void showIndex(int index) {
-        personListView.scrollTo(index);
+        ListViewSkin<?> lvs = (ListViewSkin<?>) personListView.getSkin();
+        VirtualFlow<?> vf = (VirtualFlow<?>) lvs.getChildren().get(0);
         personListView.getSelectionModel().select(index);
+        vf.scrollTo(index);
     }
 
     /**
